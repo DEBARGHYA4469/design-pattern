@@ -17,17 +17,20 @@ class ConcreteBuilder2 : public IProductBuilder {
 			delete this->product; 
 		}
 		
-		virtual void build_partA () override {
+		virtual IProductBuilder* build_partA () override {
 			product->parts.emplace_back ("Engine::Company2"); 
+			return this;
 		}; // engine 
 		
-		virtual void build_partB () override {
+		virtual IProductBuilder* build_partB () override {
 			product->parts.emplace_back ("Propeller::Company2"); 
+			return this;
 		};	// propeller
 		
-		virtual void build_partC () override {
+		virtual IProductBuilder* build_partC () override {
 			product->parts.emplace_back ("Controller_X::Company2"); 
 			product->parts.emplace_back ("Controller_Y::Company2"); 
+			return this;
 		}; // controller
 		
 		void Reset () {
