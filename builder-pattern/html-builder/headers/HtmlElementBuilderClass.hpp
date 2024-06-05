@@ -10,10 +10,11 @@ class HtmlElementBuilder {
 	public:
 		HtmlElementBuilder () = default;
 		HtmlElementBuilder (std::string root_name);
-		operator HtmlElement () {
-			return m_root;
-		}
+		~HtmlElementBuilder (); 
+		void set_root (std::string root_name);
+		void Reset ();
+		operator HtmlElement ();
 		/* Fluent Builder Interface */
 		HtmlElementBuilder* append_child (std::string child_name, std::string child_txt); 
-		void test ();
+		HtmlElement get_HtmlElement(); // producer function 
 };
