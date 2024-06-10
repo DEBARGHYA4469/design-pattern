@@ -1,4 +1,6 @@
-#include "AbstractFactory.hpp" 
+#include "GuiFactory.hpp" 
+#include "wingui.hpp" 
+#include "macgui.hpp" 
 
 /* Game acts as a client */
 class QuizApp {
