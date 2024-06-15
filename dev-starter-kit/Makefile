@@ -1,6 +1,6 @@
 CXX := g++
-CXXFLAGS := -Wall -Iheaders
-LDFLAGS :=
+CXXFLAGS := -Wall -Iheaders 
+LDFLAGS := -lboost_serialization
 
 TARGET := main
 SRCDIR := src
@@ -13,10 +13,10 @@ OBJECTS := $(SOURCES:.cpp=.o)
 all: $(TARGET)
 
 $(TARGET): $(OBJECTS)
-	$(CXX) $(CXXFLAGS) -o $@ $^
-
+	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
+ 
 $(SRCDIR)/%.o: $(SRCDIR)/%.cpp $(HEADERS)
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+	$(CXX) $(CXXFLAGS) $< $(LDFLAGS) -c -o $@
 
 run: all
 	./$(TARGET)
