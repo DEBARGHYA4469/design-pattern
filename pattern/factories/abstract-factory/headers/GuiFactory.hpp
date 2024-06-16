@@ -17,4 +17,4 @@ class GUIFactory {
 		virtual ICheckBox* createCheckBox () = 0; 	
 };
 
-
+/* Dependency Inversion : Any new GUIComponent needs to extend GuiFactory and GuiFactory remains same! */
