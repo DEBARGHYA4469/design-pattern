@@ -37,7 +37,7 @@ class DialogUI {
 			return this->createButton();
 		} /* Factory method */
 		void render () {
-			okButton = 	this->createButton ();
+			okButton = this->createButton ();
 			okButton->onClick ("Alert!");
 			okButton->render(); 
 		} 
