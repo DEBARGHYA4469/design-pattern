@@ -36,4 +36,7 @@ You don't have to `InitGoogleTest` from main or write a separate main function, 
 
 Ref : https://google.github.io/googletest/gmock_for_dummies.html
 
+I faced a weird SegV error with gmock in cygwin. To resolve I cleaned up build dir and recreated it and ran 
+`$ cmake ... -Dgtest_disable_pthreads=ON`. This will generate new lib files, copy it to cygwin's lib.
+
 
