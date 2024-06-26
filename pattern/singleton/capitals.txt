@@ -1,0 +1,10 @@
+tokyo
+100
+delhi
+200
+mumbai
+300
+new york
+400
+osaka
+500
