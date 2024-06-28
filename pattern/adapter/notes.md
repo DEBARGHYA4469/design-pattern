@@ -1,6 +1,6 @@
-* Adapter pattern is a contruct to conform a interface X to a different interface Y and mostly providing support for X for a library which supports Y.
+### Adapter pattern is a contruct to conform a interface X to a different interface Y and mostly providing support for X for a library which supports Y.
 
-* Example : 
+Example : 
 
 Interface : X 
 
