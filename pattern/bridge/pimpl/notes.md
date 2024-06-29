@@ -93,12 +93,13 @@ https://herbsutter.com/gotw/_100/
 
 
 ```
-/*				widget 												widget::impl 
+/*				widget 							            widget::impl 
 
-											|					... hidden members 			
+								|
+								|			... hidden members 			
 	... non hidden members 					|
-	pimpl  -----------------------------> 	|
-									compilation firewall 
+	pimpl  -----------------------------> 			|
+ 							compilation firewall 
 
 */
 
