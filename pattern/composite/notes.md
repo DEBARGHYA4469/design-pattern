@@ -11,13 +11,13 @@ Say you have GUI objects : dot, circle, square. You should be able to move each 
 
 
 ```
-MovableGUIObject
+    MovableGUIObject
 	   |
 	   v
-      Dot
-  |			|
+          Dot
+  |		|
   v 		v 
- Square	  Circle
+ Square	      Circle
 
 
 class GraphicComposite 
