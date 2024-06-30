@@ -39,3 +39,43 @@ TransparentShape<ColoredShape<Circle>> tbc ("0.9", "blue", 2);
 tbc.transparency; 
 ``` 
 
+You can have something like this with a static decorator pattern 
+
+```cpp
+Colored<
+	Resizeable<
+		Transparent<
+			Drawable<
+				Shape>>>> bluecircle ("blue", 0.5, 0.8, ..., 3.5);
+```
+
+note you can mark virtual functions in the decorator classes using Mixin's if the after the template expansions it is going to ask for the base classes. 
+
+i.e 
+
+```cpp
+template <typename T>
+class Derived : T {
+	virtual foo () const override {} 
+}; 
+```
+
+This is ok. Compiler not going to generate anything. 
+
+```cpp
+class Base {
+	virtual void foo() = 0;
+};
+
+template <typename T>
+class Derived : T {
+	virtual void foo () const override {} 
+}; 
+
+Derived<Base> obj;
+```
+
+This is ok, because compiler going to generate Derived : Base. 
+But you cannot mark say bar() as virtual if Base does not override and we are going to generate it. 
+
+Basic idea of static decorator instead of writing out the multi level inheritance explicitly you use template and mixins to generate them implicitly and generate whatever is required. 

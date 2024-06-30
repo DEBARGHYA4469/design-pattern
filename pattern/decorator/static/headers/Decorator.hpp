@@ -45,11 +45,11 @@ public:
 	std::string _color() const { return this->color; } 
 	template <typename ...Args> 
 	ColoredShape (std::string color, Args ...args) : T (std::forward<Args>(args)...), color (color) {}
-	virtual std::string draw () const {
+	virtual std::string draw () const override {
 		std::ostringstream oss; 
 		oss << T::draw() << "of color " << color << " "; 
 		return oss.str();
-	} 
+	}
 };  
 
 /* Decorator class I*/

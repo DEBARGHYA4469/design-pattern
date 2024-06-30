@@ -12,7 +12,7 @@ TEST (DecoratorTest, MixinTest) {
 	std::cout << trs.draw() << std::endl;
 	std::cout << trs._width() << std::endl;
 	std::cout << trs._color() << std::endl;
-	std::cout << trs._transparency() << std::endl; 
+	std::cout << trs._transparency() << std::endl;
 } 
 
 int main(int argc, char** argv) {
