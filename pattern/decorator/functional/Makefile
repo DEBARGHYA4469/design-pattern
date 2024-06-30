@@ -1,6 +1,7 @@
 CXX := g++
-CXXFLAGS := -Wall -Iheaders -std=gnu++20
-LDFLAGS := -lgtest -lgtest_main -lgmock -lgmock_main -lboost_serialization -fconcepts 
+CXXFLAGS := -Wall -Iheaders
+LDFLAGS := -lgtest -lgtest_main -lgmock -lgmock_main -lboost_serialization
+
 TARGET := main
 SRCDIR := src
 TESTDIR := tests
