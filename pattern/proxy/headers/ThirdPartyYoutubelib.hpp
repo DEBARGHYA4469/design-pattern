@@ -23,8 +23,8 @@ public:
 
     std::string getVideoInfo(const std::string& id) override {
         // Get metadata about some video.
-        std::cout << "Calling Youtube:DB, Need some time" << std::endl;
-        std::this_thread::sleep_for(std::chrono::seconds(2));
+        std::cout << "[CONNECT] Requesting Youtube:DB for data ..." << std::endl;
+        std::this_thread::sleep_for(std::chrono::seconds(1));
         return "Video info for " + id; // Example response
     }
 

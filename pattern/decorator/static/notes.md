@@ -3,7 +3,7 @@
 Mixin Interface 
 Perfect forewarding https://iamsorush.com/posts/perfect-forwarding-cpp/, https://en.cppreference.com/w/cpp/utility/forward
 
-One issue with static decorator pattern was that it could not call the specific methods for a call from its decorator. Example from ColoredShape (blueCircle) objects you cannot Circle::resize method as ColoredShape is generic.
+One issue with dynamic decorator pattern was that it could not call the specific methods for a call from its decorator. Example from ColoredShape (blueCircle) objects you cannot Circle::resize method as ColoredShape is generic.
 
 To solve this we will use mixin inheritance and perfect forewarding. 
 
@@ -79,3 +79,6 @@ This is ok, because compiler going to generate Derived : Base.
 But you cannot mark say bar() as virtual if Base does not override and we are going to generate it. 
 
 Basic idea of static decorator instead of writing out the multi level inheritance explicitly you use template and mixins to generate them implicitly and generate whatever is required. 
+
+
+https://softwareengineering.stackexchange.com/questions/61376/aggregation-vs-composition
