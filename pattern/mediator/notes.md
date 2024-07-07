@@ -24,3 +24,120 @@ Consider a simple Game of football:
 - There can be watchers or broadcasters like TV, Referee, Coach. There are `Observers`.
 - We create an instance of these observers and that adds a callback function to the `Game: events` slot using `events.connect`. 
 - Whenever we receive a `signal`/`event` with `events(...)`, all the slots/call back functions in the events are called.  
+
+
+### UI Component
+
+- If there are multiple related UI component, they are interact with another, design a mediator for them to talk to another. 
+
+```cpp
+#include <iostream>
+#include <string>
+#include <memory>
+
+// Forward declaration of Component class
+class Component;
+
+// Mediator interface
+class Mediator {
+public:
+    virtual void notify(Component* sender, const std::string& event) = 0;
+};
+
+// Component class
+class Component {
+protected:
+    Mediator* dialog;
+public:
+    Component(Mediator* dialog) : dialog(dialog) {}
+
+    virtual void click() {
+        dialog->notify(this, "click");
+    }
+
+    virtual void keypress() {
+        dialog->notify(this, "keypress");
+    }
+};
+
+// Concrete components
+class Button : public Component {
+public:
+    using Component::Component;
+    // Additional Button-specific functionality
+};
+
+class Textbox : public Component {
+public:
+    using Component::Component;
+    // Additional Textbox-specific functionality
+};
+
+class Checkbox : public Component {
+public:
+    using Component::Component;
+
+    void check() {
+        dialog->notify(this, "check");
+    }
+    // Additional Checkbox-specific functionality
+};
+
+// Concrete mediator class
+class AuthenticationDialog : public Mediator {
+private:
+    std::string title;
+    std::unique_ptr<Checkbox> loginOrRegisterChkBx;
+    std::unique_ptr<Textbox> loginUsername, loginPassword;
+    std::unique_ptr<Textbox> registrationUsername, registrationPassword, registrationEmail;
+    std::unique_ptr<Button> okBtn, cancelBtn;
+
+public:
+    AuthenticationDialog() {
+        // Create all component objects and establish links
+        loginOrRegisterChkBx = std::make_unique<Checkbox>(this);
+        loginUsername = std::make_unique<Textbox>(this);
+        loginPassword = std::make_unique<Textbox>(this);
+        registrationUsername = std::make_unique<Textbox>(this);
+        registrationPassword = std::make_unique<Textbox>(this);
+        registrationEmail = std::make_unique<Textbox>(this);
+        okBtn = std::make_unique<Button>(this);
+        cancelBtn = std::make_unique<Button>(this);
+    }
+
+    void notify(Component* sender, const std::string& event) override {
+        if (sender == loginOrRegisterChkBx.get() && event == "check") {
+            if (loginOrRegisterChkBx->checked) {
+                title = "Log in";
+                // 1. Show login form components.
+                // 2. Hide registration form components.
+            } else {
+                title = "Register";
+                // 1. Show registration form components.
+                // 2. Hide login form components.
+            }
+        }
+
+        if (sender == okBtn.get() && event == "click") {
+            if (loginOrRegisterChkBx->checked) {
+                // Try to find a user using login credentials.
+                // if (!found)
+                // Show an error message above the login field.
+            } else {
+                // 1. Create a user account using data from the registration fields.
+                // 2. Log that user in.
+                // ...
+            }
+        }
+    }
+};
+
+int main() {
+    AuthenticationDialog dialog;
+    // Example usage
+    dialog.notify(dialog.loginOrRegisterChkBx.get(), "check");
+    dialog.notify(dialog.okBtn.get(), "click");
+    return 0;
+}
+
+```
