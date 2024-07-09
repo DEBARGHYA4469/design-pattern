@@ -1,5 +1,17 @@
 ## Mediator Pattern 
 
+
+### When to use? 
+
+- when you have component or classes which you cannot reuse and keep making different version of it. 
+- Component A is dependent on Component B,C,D in one place, C,D in other or X,Y in some place. 
+- All of A,B,C,... share some common interface. 
+- Basically if A can be composed of multiple components of same interface. 
+- How A is going to communicate with any of its related component. 
+- Let mediator do it. 
+
+Game Example:
+
 - Components of a game go in an out all the time. 
 - Without a mediator if you want the components to communicate among each other, the components have to store each other information, which is not optimal. 
 - Hence, a `mediator` pattern is maintained, which stores info about all the objects in the pool and any request from any object to any other object is made through that pool. 
