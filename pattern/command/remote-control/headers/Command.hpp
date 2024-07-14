@@ -2,6 +2,8 @@
 #include "bits/stdc++.h"
 #include "gtest/gtest.h"
 
+using namespace std;
+
 struct Command
 {
 	virtual ~Command () = default;
@@ -51,27 +53,25 @@ struct PhillipsBulb : ISmartBulb {
 		Remote Interface : 
 		[* - on off twinkle]
 */
+
+struct Button {
+	function <void ()> fcn;
+	Button (function <void ()> fcn) : fcn (fcn) {}
+	Button () = default;
+	void setfcn (function <void ()> fcn) { this->fcn = fcn; }
+	void onPress () { fcn(); }
+};
+
 struct ConfigurableRemote {
 	ISmartBulb* smartbulb;
-	ConfigurableRemote (ISmartBulb* smartbulb) : smartbulb (smartbulb) {}
-	void OnBtn () {
-		smartbulb->on();
+	Button *OnBtn, *OffBtn, *DimBtn, *LightBtn, *TwinkleBtn;
+
+	ConfigurableRemote (ISmartBulb* smartbulb) : smartbulb (smartbulb) {
+		OnBtn = new Button ();
+		OffBtn = new Button ();
+		DimBtn = new Button ();
+		LightBtn = new Button ();
+		TwinkleBtn = new Button ();
 	}
-	void OffBtn () {
-		smartbulb->off();
-	}
-	void DimBtn () {
-		smartbulb->dim();
-	}
-	void LightBtn () {
-		smartbulb->light();
-	}
-	void TwinkleBtn () {
-		std::cout << "Start of twinkling ...\n" << std::endl;
-		for (int i=0;i<10;i++) {
-			if (i&1) smartbulb->light();
-			else smartbulb->dim();
-		}
-		std::cout << "\nEnd of twinkling ..." << std::endl;
-	}
+
 };
