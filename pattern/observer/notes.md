@@ -16,7 +16,7 @@
 - Detach: Observers can unregister themselves if they no longer wish to receive updates.
 - Notify: When the subject's state changes, it sends a notification to all registered observers.
 
-* Observer Pattern using CRTP
+* Thread safe Observer Pattern using CRTP
 
 ```cpp
 template <typename T> 
