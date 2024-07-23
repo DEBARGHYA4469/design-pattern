@@ -26,15 +26,15 @@ protected:
 	virtual void buildStructures() = 0;
 	virtual void buildUnits() = 0;
 
-    // Additional template method
-   void attack() {
-        std::string enemy = closestEnemy();
-        if (enemy.empty()) {
-            sendScouts("center of the map");
-        } else {
-            sendWarriors(enemy);
-        }
-    }
+   	 // Additional template method
+   	void attack() {
+       	std::string enemy = closestEnemy();
+	        if (enemy.empty()) {
+	        	sendScouts("center of the map");
+	        } else {
+	        	sendWarriors(enemy);
+	        }
+    	}
 
     // Abstract methods for attack operations
 	virtual void sendScouts(const std::string &position) = 0;
@@ -54,14 +54,14 @@ struct OrcsAI : GameAI {
 		std::cout << "Orcs building structures" << std::endl;
 	}
 	virtual void buildUnits(){
-    	std::cout << "Orcs building units" << std::endl;
-    }
+    		std::cout << "Orcs building units" << std::endl;
+    	}
 	virtual void sendScouts(const std::string &position){
-    	std::cout << "Orcs sending scouts to " << position << std::endl;
-    }
+    		std::cout << "Orcs sending scouts to " << position << std::endl;
+    	}
 	virtual void sendWarriors(const std::string &position){
-    	std::cout << "Orcs sending scouts to " << position << std::endl;
-    }
+    		std::cout << "Orcs sending scouts to " << position << std::endl;
+    	}
 };
 
 struct MonstersAI : GameAI {
@@ -69,12 +69,12 @@ struct MonstersAI : GameAI {
 		std::cout << "Monsters building structures" << std::endl;
 	}
 	virtual void buildUnits(){
-    	std::cout << "Monsters building units" << std::endl;
-    }
-virtual void sendScouts(const std::string &position){
-    	std::cout << "Monsters sending scouts to " << position << std::endl;
-    }
-virtual void sendWarriors(const std::string &position){
-    	std::cout << "Monsters sending scouts to " << position << std::endl;
-    }
+    		std::cout << "Monsters building units" << std::endl;
+    	}
+	virtual void sendScouts(const std::string &position){
+    		std::cout << "Monsters sending scouts to " << position << std::endl;
+   	}
+	virtual void sendWarriors(const std::string &position){
+    		std::cout << "Monsters sending scouts to " << position << std::endl;
+    	}
 };
