@@ -4,6 +4,53 @@ Pimpl Idiom (Pointer to Implementation) in C++
 - Helps reduce compilation dependencies. Changes in implementation does not require the client of the interface to recompile. 
 - Stable ABI since the client interface does not change frequently. 
 
+```cpp
+#include <bits/stdc++.h>
+
+using namespace std;
+
+/* Exposed to client via header */ 
+
+struct Widget {
+private:
+    struct WidgetImpl;  
+    WidgetImpl* pImpl;
+public:
+    enum class Type { BUTTON, TEXT, CHECKBOX };
+    Widget(Type);
+    void draw ();
+    void render();
+    void move ();
+};
+
+/* Exposed to client via header */ 
+
+
+/* Concrete Impl via link */ 
+
+struct Widget::WidgetImpl {
+    WidgetImpl(Widget::Type T) {}
+    void fun1 () {}  
+    void fun2 () {} 
+    void fun3 () {} 
+}; 
+
+Widget::Widget (Widget::Type mType) { pImpl = new Widget::WidgetImpl(mType); }
+void Widget::draw () { pImpl -> fun1(); }
+void Widget::render () { pImpl -> fun2(); }
+void Widget::move () { pImpl -> fun3(); }
+
+/* Concrete Impl via link */ 
+
+int main() 
+{
+    Widget w (Widget::Type::BUTTON);     
+    w.draw();
+    
+    return 0;
+}
+```
+
 Example: 
 
 Suppose you are coding a gyroscope class which 
